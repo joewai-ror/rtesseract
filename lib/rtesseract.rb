@@ -12,12 +12,13 @@ require 'rtesseract/tsv'
 class RTesseract
   class Error < StandardError; end
 
-  attr_reader :config, :source, :errors
+  attr_reader :config, :source, :errors, :pid
 
   def initialize(src = '', options = {})
     @source = src
     @config = RTesseract.config.merge(options)
     @errors = []
+    @pid = Process.pid
   end
 
   def to_box
